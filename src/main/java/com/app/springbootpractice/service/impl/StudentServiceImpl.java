@@ -3,7 +3,9 @@ package com.app.springbootpractice.service.impl;
 import com.app.springbootpractice.model.Student;
 import com.app.springbootpractice.repostory.StudentRepository;
 import com.app.springbootpractice.service.StudentService;
+import com.app.springbootpractice.ultil.Helper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
+    private final Helper helper;
 
     @Override
     public List<Student> findAll() {
@@ -38,5 +41,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student findById(Integer integer) {
         return studentRepository.findById(integer).get();
+    }
+
+    @Override
+    public String testBean() {
+        return "StudentServiceIMPL";
     }
 }

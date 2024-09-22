@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Setter
+
+//spring boot
 @Entity
 @Table(name = "university")
 public class University {

@@ -2,12 +2,20 @@ package com.app.springbootpractice.model;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "student")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student {
 
     @Id
@@ -21,6 +29,8 @@ public class Student {
     @Column(name = "country")
     private String country;
 
+    @Column(name = "age")
+    private Integer age;
 
     // many to one n - 1
     @ManyToOne(fetch = FetchType.LAZY)
