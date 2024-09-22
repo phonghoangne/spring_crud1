@@ -13,7 +13,7 @@
 
 <div th:if="${flagSave}">
     <h2>Add Student</h2>
-    <form th:object="${student1}" th:action="@{/student/save}" method="post">
+    <form th:object="${student}" th:action="@{/student/save}" method="post" enctype="multipart/form-data">
         <label>name:</label>
         <input id="name" type="text" th:field="*{name}" >
         <label>age:</label>
@@ -23,6 +23,19 @@
 
         <label>Birthday</label>
         <input id = "bod" type="date" th:field="*{birthday}">
+
+        <select th:field="*{university}">
+            <option th:each="item : ${university}" th:value="${item.id}" th:text="${item.name}">
+            </option>
+        </select>
+
+<!--        <input th:field="*{image}" type="file" accept="image/*" name="image" id="image">-->
+        <button type="submit">add</button>
+    </form>
+
+    <form th:action="@{/student/saveImage}" method="post" enctype="multipart/form-data">
+        <label>image</label>
+        <input type="file" accept="image/*" name="image" id="image">
         <button type="submit">add</button>
     </form>
 </div>
@@ -49,7 +62,6 @@
             <a th:href="@{/student/edit/{id}(id=${student.getId()})}">Edit</a>
             <a th:href="@{/student/delete/{id}(id=${student.getId()})}" >Delete</a>
         </td>
-        <td><img th:src="@{'/images/' + ${product.imageFileName}}" alt="..." width="100"></td>
     </tr>
 
     </tbody>

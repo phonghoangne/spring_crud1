@@ -37,6 +37,10 @@ public class Student {
     @JoinColumn (name = "university_id",referencedColumnName = "id")
     private University university;
 
+
+    @Column(name = "image")
+    private String image;
+
     public Integer getId() {
         return id;
     }
