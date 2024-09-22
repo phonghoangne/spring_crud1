@@ -21,6 +21,7 @@
         <label>country:</label>
         <input id="address" type="text" th:field="*{country}" >
 
+
         <label>Birthday</label>
         <input id = "bod" type="date" th:field="*{birthday}">
 
@@ -36,6 +37,8 @@
     <form th:action="@{/student/saveImage}" method="post" enctype="multipart/form-data">
         <label>image</label>
         <input type="file" accept="image/*" name="image" id="image">
+=======
+>>>>>>> 2cb53407a5cebb0be22a06b5e225264ab64d0320
         <button type="submit">add</button>
     </form>
 </div>
