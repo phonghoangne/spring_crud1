@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Sinh viên</title>
+</head>
+<body>
+<h1>Danh sách Sinh viên</h1>
+
+<p th:if="${message != null}">
+    <span th:text="${message}"></span>
+</p>
+
+<div th:if="${flagSave}">
+    <h2>Add Student</h2>
+    <form th:object="${student1}" th:action="@{/student/save}" method="post">
+        <label>name:</label>
+        <input id="name" type="text" th:field="*{name}" >
+        <label>age:</label>
+        <input id="age" type="number" th:field="*{age}">
+        <label>address:</label>
+        <input id="address" type="text" th:field="*{address}" >
+        <button type="submit">add</button>
+    </form>
+</div>
+
+<h2>Student list :</h2>
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Birthday</td>
+        <td>Country</td>
+        <td>University</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.getId}"></td>
+        <td th:text="${student.getName}"></td>
+        <td th:text="${student.getBirthday}"></td>
+        <td th:text="${student.getCountry}"></td>
+        <td>
+            <a th:href="@{/student/edit/{id}(id=${student.getId()})}">Edit</a>
+            <a th:href="@{/student/delete/{id}(id=${student.getId()})}" >Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

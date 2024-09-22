@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:if="${message != null}">
+    <span th:text="${message}"></span>
+</p>
+<div th:if="${flagSave != null}">
+<form th:object="${university}" th:action="@{/university/save}" method="post">
+        <lable>Name :</lable>
+<input id="name" type="text" th:field="*{name}">
+        <lable>City :</lable>
+<input id="city" type="text" th:field="*{city}">
+<button type="submit">Ok</button>
+</form>
+</div>
+<div th:if="${flagUpdate!= null}">
+<form th:object="${university}" th:action="@{/university/edit/{id}(id=${university.getId()})}" method="post">
+    <label>Name:</label>
+    <input id="name" type="text" th:field="*{name}" >
+    <label>City:</label>
+    <input id="city" type="text" th:field="*{city}" >
+    <button type="submit"> Ok </button>
+</form>
+</div>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>City</td>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${universities}">
+    <td th:text="${item.getId()}"></td>
+    <td th:text="${item.getName()}"></td>
+    <td th:text="${item.getCity()}"></td>
+    <td>
+        <a th:href="@{/university/edit/{id}(id=${item.getId()})}">Edit</a>
+        <a th:href="@{/university/delete/{id}(id=${item.getId()})}">Delete</a>
+    </td>
+    </tr>
+
+    </tbody>
+</table>
+
+</body>
+</html>
